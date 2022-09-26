@@ -13,3 +13,4 @@ app.listen(port, ()=>{
 
 console.log('listen on port: ', port);
 }); 
+require('./bd/connections/bd')
