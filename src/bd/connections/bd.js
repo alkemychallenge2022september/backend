@@ -30,3 +30,4 @@ con.connect(function(error){
                console.log("Contacto.agregarUsuario.connect --Error-- " + x); 
            } 
         })
+module.exports = con;
