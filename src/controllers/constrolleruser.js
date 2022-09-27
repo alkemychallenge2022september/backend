@@ -1,11 +1,11 @@
 const { userLog, userReg } = require('../bd/models/modeluser');
 
-const userreg = (req, res) => {
 
-    const { name, password, email } = req.body;
+const userreg = async (req, res) => {
 
-    (name === '' && password === '' && email === '') ? res.status(405).end() : userReg(req, res);
-
+    const{name, email, password} = req.body;
+    if(email != '' && password != '', name != '') userReg(req, res)
+    
 }
 
 const userlog = (req, res) => {
@@ -16,4 +16,4 @@ const userlog = (req, res) => {
 }
 
 module.exports.userlog = userlog;
-module, exports.userreg = userreg;
+module.exports.userreg = userreg;

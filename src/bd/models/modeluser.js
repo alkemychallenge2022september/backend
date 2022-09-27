@@ -40,6 +40,7 @@ const userReg = async (req, res) => {
         }
      });
 
-     module.exports.userLog = userLog;
-     module.exports.userReg = userReg;
+     
 }
+module.exports.userLog = userLog;
+module.exports.userReg = userReg;
