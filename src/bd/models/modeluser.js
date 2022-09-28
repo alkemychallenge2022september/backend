@@ -1,11 +1,11 @@
 const con = require('../connections/bd');
-
+const {user} = require('../../middleware/user');
 const userLog = async (req, res) => {
    
   const { email, password } = req.body
   let queryString = `SELECT email, password, name, userid FROM user WHERE email = ? AND password = ?`
 
-  dbconnection.query(queryString, [email, password], (_err, results, field) => {
+  con.query(queryString, [email, password], (_err, results, field) => {
     if (_err) {
       console.log('Failed to query [userLog], err: ', _err)
       res.status(404).end()
@@ -16,6 +16,8 @@ const userLog = async (req, res) => {
       res.status(404).send('without user') 
     }else{
       res.status(200).json({ 'name': results[0].name })
+      user.setname(results[0].name);
+      user.setuserid(results[0].userid);
     } 
   })
 }
