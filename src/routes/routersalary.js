@@ -1,19 +1,20 @@
 const router = require('express').Router();
+const {auth} = require('../middleware/auth')
 const {getinput, postinput, getoutput, postoutput, salary, suminput, sumoutput} = require('../controllers/controllersalary');
 
-router.get('/salary', salary);
+router.get('/salary', auth, salary);
 
-router.get('/input', getinput);
+router.get('/input', auth, getinput);
 
-router.post('/input', postinput);
+router.post('/input', auth, postinput);
 
-router.get('/output', getoutput);
+router.get('/output', auth, getoutput);
 
-router.post('/output', postoutput);
+router.post('/output', auth, postoutput);
 
-router.get('/input-total', suminput);
+router.get('/input-total', auth, suminput);
 
-router.get('/output-total', sumoutput);
+router.get('/output-total', auth,  sumoutput);
 
 module.exports = router;
 

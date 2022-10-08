@@ -8,6 +8,9 @@ class User{
 
         this.session[1] = userid;
     }
+    settoken(token){
+        this.session[2] = token;
+    }
     getname(){
 
         return this.session[0];
@@ -16,6 +19,10 @@ class User{
 
         return this.session[1];
     }
+    gettoken(){
+        return this.session[2];
+    }
+
 }
 
 const user = new User();

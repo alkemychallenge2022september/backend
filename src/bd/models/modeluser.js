@@ -1,5 +1,8 @@
 const con = require('../connections/bd');
+const jwt = require("jsonwebtoken");
 const {user} = require('../../middleware/user');
+const { token } = require('morgan');
+require("dotenv").config();
 const userLog = async (req, res) => {
    
   const { email, password } = req.body
@@ -15,9 +18,27 @@ const userLog = async (req, res) => {
     {
       res.status(404).send('without user') 
     }else{
-      res.status(200).json({ 'name': results[0].name })
+      const accesstoken = jwt.sign(
+        {
+          name: `${results[0].name}`}, 
+          process.env.TOKEN_SECRET, {
+        expiresIn: '7d'
+        },
+        function(err, token){
+          if (err) {
+            console.log(err);
+        } else {
+          res.status(200).json({
+            'token': token
+          });
+          user.settoken(token);
+        }
+        }); 
+     
       user.setname(results[0].name);
       user.setuserid(results[0].userid);
+      
+      
     } 
   })
 }
