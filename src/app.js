@@ -5,10 +5,11 @@ const morgan = require('morgan');
 const routes = require('../src/routes/routerindex');
 const app = express();
 app.use(express.json());
-app.use(express.urlencoded({extended: false}));
+app.use(express.urlencoded({extended: true}));
+app.use(cors({ origin: '*'}));
 app.use('/v1', routes);
 app.use(morgan('dev'));
-app.use(cors());
+
 
 
 const port = process.env.PORT || 3001;

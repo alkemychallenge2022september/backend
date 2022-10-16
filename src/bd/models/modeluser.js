@@ -16,7 +16,7 @@ const userLog = async (req, res) => {
     }
     if (results.length == 0) 
     {
-      res.status(404).send('without user') 
+      res.status(403).send('without user') 
     }else{
       const accesstoken = jwt.sign(
         {
